@@ -58,13 +58,13 @@ public class Files {
             File content = directories.pop();
             if (content.isDirectory()) {
                 //Gets all files from subdirectories
-                File[] listFiles = content.listFiles(filterByExtension);
+                File[] listFiles = content.listFiles();
                 for (int i = 0; i < listFiles.length; i++) {
                     //FOR DEBUGGING
                     System.out.println(listFiles[i].getPath());
                     directories.push( listFiles[i]);
                     //Adds to List if ListFiles[i] is a file
-                    if (directories.peek().isFile()) {
+                    if (directories.peek().isFile() && directories.peek().getName().endsWith(fileType)) {
                         files.add(directories.peek());
                     }
                 }
